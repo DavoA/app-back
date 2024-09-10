@@ -7,7 +7,7 @@ const routes = require("./routes");
 main().catch((err) => console.log(err));
 
 async function main() {
-  await mongoose.connect("mongodb://mongo:27017/todos", {
+  await mongoose.connect("mongodb://mongodb-service.ingress-nginx.svc.cluster.local:27017/todos", {
     user: process.env.MONGO_INITDB_ROOT_USERNAME,
     pass: process.env.MONGO_INITDB_ROOT_PASSWORD,
     useUnifiedTopology: true,
