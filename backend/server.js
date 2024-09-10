@@ -8,9 +8,12 @@ main().catch((err) => console.log(err));
 
 async function main() {
   await mongoose.connect("mongodb://mongo:27017/todos", {
+    user: process.env.MONGO_INITDB_ROOT_USERNAME,
+    pass: process.env.MONGO_INITDB_ROOT_PASSWORD,
     useUnifiedTopology: true,
     useNewUrlParser: true,
   });
+
   const app = express();
   app.use(cors());
   app.use(express.json());
