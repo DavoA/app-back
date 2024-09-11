@@ -9,7 +9,7 @@ jobs:
   call-image-push:
     uses: DavoA/reusable-workflows/.github/workflows/image-push.yaml@main
     with:
-      image: app-front  
+      image: app-back  
       context: ./backend
     secrets:
       docker_username: ${{ secrets.DOCKER_USERNAME }}
