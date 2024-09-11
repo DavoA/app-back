@@ -1,28 +1,16 @@
-name: "Backend image"
+name: Backend image push
+
 on:
-    push:
+  push:
+    branches:
+      - main  
 
 jobs:
-    dockerhub-push:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout repository
-              uses: actions/checkout@v4
-
-            - name: Set up Docker Buildx
-              uses: docker/setup-buildx-action@v2
-
-            - name: Log in to Docker Hub
-              uses: docker/login-action@v2
-              with:
-                username: ${{ secrets.DOCKER_USERNAME }}
-                password: ${{ secrets.DOCKER_PASSWORD }}
-
-            - name: Build and push Docker image
-              uses: docker/build-push-action@v4
-              with:
-                context: ./backend
-                tags: |
-                    ${{ secrets.DOCKER_USERNAME }}/app-back:${{ github.sha }}
-                    ${{ secrets.DOCKER_USERNAME }}/app-back:latest
-                push: true
+  call-image-push:
+    uses: DavoA/reusable-workflows/.github/workflows/image-push.yaml@main
+    with:
+      image: app-front  
+      context: ./backend
+    secrets:
+      docker_username: ${{ secrets.DOCKER_USERNAME }}
+      docker_password: ${{ secrets.DOCKER_PASSWORD }}
