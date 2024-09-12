@@ -1,0 +1,18 @@
+name: Backend image tag change
+
+on:
+  workflow_run:
+    workflows: [Backend image push]
+    types:
+      completed
+
+jobs:
+  call-tag-change:
+    uses: DavoA/reusable-workflows/.github/workflows/tag-change.yaml@main
+    with:
+      image: app-back
+      path: back-manifests
+      filename: back-deploy.yaml
+    secrets:
+      dockerhub_username: ${{ secrets.DOCKER_USERNAME }}
+      github_pat: ${{ secrets.PAT }}
