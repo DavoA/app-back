@@ -8,6 +8,9 @@ main().catch((err) => console.log(err));
 
 async function main() {
   try {
+    console.log('MongoDB connection details:');
+    console.log(`Username: ${process.env.MONGO_INITDB_ROOT_USERNAME}`);
+    console.log(`Database: ${process.env.MONGO_INITDB_DATABASE}`);
     await mongoose.connect(`mongodb://${process.env.MONGO_INITDB_ROOT_USERNAME}:${process.env.MONGO_INITDB_ROOT_PASSWORD}@mongodb-service.ingress-nginx.svc.cluster.local:27017/${process.env.MONGO_INITDB_DATABASE}`,
       {
         useUnifiedTopology: true,
