@@ -11,7 +11,7 @@ async function main() {
     console.log('MongoDB connection details:');
     console.log(`Username: ${process.env.MONGO_INITDB_ROOT_USERNAME}`);
     console.log(`Database: ${process.env.MONGO_INITDB_DATABASE}`);
-    await mongoose.connect(`mongodb://admin:password@mongodb-service.ingress-nginx.svc.cluster.local:27017/back-db`,
+    await mongoose.connect(`mongodb://admin:password@mongodb-service.ingress-nginx.svc.cluster.local:27017`,
       {
         useUnifiedTopology: true,
         useNewUrlParser: true,
